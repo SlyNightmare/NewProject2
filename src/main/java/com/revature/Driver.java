@@ -27,7 +27,8 @@ public class Driver {
 		 * "Scott could not be registered");
 		 */
 	
-	logger.trace((accountService.registerAccount(new Account(0, "Alex", "password")))
-			? "Alex Registered successfully" : "Alex could not be registered");
+	// logger.trace((accountService.registerAccount(new Account(0, "Alex", "password")))
+			// ? "Alex Registered successfully" : "Alex could not be registered");
+
 	}
 	}
