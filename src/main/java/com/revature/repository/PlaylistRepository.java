@@ -3,16 +3,20 @@ package com.revature.repository;
 import java.util.List;
 
 import com.revature.model.Playlist;
-import com.revature.model.Tracks;
 
 public interface PlaylistRepository {
 
-	void save (Playlist playlist);
-	Playlist findbyUserId(int userId);
+	//saving the playlist
+	int save (Playlist playlist);
+	//get by name
 	Playlist findbyName (String name);
-	List<Playlist> findAllPlaylists();
-	Playlist createPlaylist(String name);
+	//get all playlists by user name
+	List<Playlist> findAllPlaylists(int accountId);
+	//
+	//Playlist createPlaylist(String name);
+	//update the playlist
 	void updatePlaylist(int id, Playlist playlist);
+	//delete the playlist
 	void deletePlaylist(int id);
 	
 }

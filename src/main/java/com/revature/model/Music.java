@@ -1,10 +1,14 @@
 package com.revature.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.SecondaryTables;
@@ -48,16 +52,27 @@ public class Music {
 	@Column(name = "URL_ID")
 	private String url;
 	
+	@ManyToMany(mappedBy="tracks")
+	private Set<Playlist> playlists = new HashSet<>();
+	
 	public Music() {
 	}
 
-	public Music(int id, String track, String artist, String genre, String album) {
+	public Music(int id, String track, String artist, String genre, String album, String seed, String item, String url,
+			Set<Playlist> playlists) {
+		super();
 		this.id = id;
 		this.track = track;
 		this.artist = artist;
 		this.genre = genre;
 		this.album = album;
+		this.seed = seed;
+		this.item = item;
+		this.url = url;
+		this.playlists = playlists;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -102,7 +117,9 @@ public class Music {
 	@Override
 	public String toString() {
 		return "Music [id=" + id + ", track=" + track + ", artist=" + artist + ", genre=" + genre + ", album=" + album
-				+ "]";
+				+ ", seed=" + seed + ", item=" + item + ", url=" + url + ", playlists=" + playlists + "]";
 	}
+
+	
 
 }

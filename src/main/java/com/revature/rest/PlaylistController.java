@@ -9,7 +9,8 @@ import com.revature.model.Tracks;
 
 public interface PlaylistController {
 
-	ResponseEntity<List<Playlist>> getAllPlaylists();
-	ResponseEntity<Playlist> createPlaylist(String name);
+	ResponseEntity<List<Playlist>> getAllPlaylists(int accountId);
+	ResponseEntity<?> createPlaylist(Playlist playlist);
 	ResponseEntity<Playlist> updatePlaylist(Tracks track);
+	ResponseEntity<Playlist> getPlaylistByName(String name);
 }

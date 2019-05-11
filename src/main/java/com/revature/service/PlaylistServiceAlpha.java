@@ -12,6 +12,7 @@ import com.revature.model.Playlist;
 import com.revature.repository.PlaylistRepository;
 
 @Service("playlistService")
+@Transactional
 public class PlaylistServiceAlpha implements PlaylistService {
 
 	private static Logger logger = Logger.getLogger(PlaylistServiceAlpha.class);
@@ -24,37 +25,8 @@ public class PlaylistServiceAlpha implements PlaylistService {
 	}
 
 	@Override
-	public void save(Playlist playlist) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Playlist getbyUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Playlist getbyName(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@Transactional
-	public List<Playlist> getAllPlaylists() {
-		return playlistRepository.findAllPlaylists();
-	}
-
-	@Override
-	public Playlist createPlaylist(String name) {
-		return playlistRepository.createPlaylist(name);
-	}
-
-	@Override
 	public void updatePlaylist(int id, Playlist playlist) {
-		// TODO Auto-generated method stub
+		playlistRepository.updatePlaylist(id, playlist);
 		
 	}
 
@@ -62,6 +34,21 @@ public class PlaylistServiceAlpha implements PlaylistService {
 	public void deletePlaylist(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int save(Playlist playlist) {
+		return playlistRepository.save(playlist);
+	}
+
+	@Override
+	public Playlist findbyName(String name) {
+		return playlistRepository.findbyName(name);
+	}
+
+	@Override
+	public List<Playlist> findAllPlaylists(int accountId) {
+		return playlistRepository.findAllPlaylists(accountId);
 	}
 	
 	
