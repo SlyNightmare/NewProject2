@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -36,25 +35,6 @@ public class PlaylistControllerAlpha implements PlaylistController {
 	@Autowired
 	private PlaylistService playlistService;
 
-	@Autowired
-	private Account account;
-
-	/*
-	 * @GetMapping() public List<Playlist> findAllPlaylistsByUsername(String
-	 * username) {
-	 * 
-	 * return null;
-	 * 
-	 * }
-	 */
-	/*
-	 * @PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE) public
-	 * ResponseEntity<Playlist> createPlaylist(@RequestBody String name) { Playlist
-	 * newPlaylist = playlistService.createPlaylist(name); if (newPlaylist != null)
-	 * { return ResponseEntity.created(URI.create("/playlists?name=" +
-	 * newPlaylist.getName())).build(); } else { return
-	 * ResponseEntity.unprocessableEntity().build(); } }
-	 */
 	
 	//Getting all Playlists 
 	@GetMapping(value = "/playlists", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,13 +43,6 @@ public class PlaylistControllerAlpha implements PlaylistController {
 		return ResponseEntity.ok().body(playlists);
 	}
 
-	/*
-	 * @GetMapping(value = "/playlists", produces =
-	 * MediaType.APPLICATION_JSON_VALUE) public ResponseEntity<List<Playlist>>
-	 * getAllPlaylists(@RequestParam("accountId") int accountId) { List<Playlist>
-	 * playlists = playlistService.findAllPlaylists(account.getId()); return
-	 * ResponseEntity.ok().body(playlists); }
-	 */
 
 	@PostMapping(value = "/playlists/create")
 	public ResponseEntity<?> createPlaylist(@RequestBody Playlist playlist) {
@@ -88,14 +61,14 @@ public class PlaylistControllerAlpha implements PlaylistController {
 
 
 	@Override
-	@PutMapping(value="/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value="/playlists/update", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Playlist> updatePlaylist(@RequestBody Tracks track) {
 		
 		headers.set("Authorization", "Bearer " + authorizationToken); 
 		HttpEntity<?> entity = new HttpEntity<Object>(headers); 
 		ResponseEntity<Playlist> response = restTemplate.exchange("https://api.spotify.com/v1/search?q=" + track.getItems().getName()+"&type=track", HttpMethod.GET, entity, Playlist.class); 
-		Playlist newPlaylist = response.getBody(); //return
-		return response;
+		return response; //return
+		
 	}
 
 	// sessionFactory.persist();

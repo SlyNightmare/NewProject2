@@ -28,7 +28,6 @@ public class Driver {
 				(accountService.registerAccount(new Account(0, "Alex", "password"))) ? "Alex Registered successfully"
 						: "Alex could not be registered");
 		
-		((AbstractApplicationContext) context).close();
 
 	}
 }

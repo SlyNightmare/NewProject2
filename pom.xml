@@ -99,7 +99,9 @@
 			<version>4.3.0.RELEASE</version>
 		</dependency>
 	</dependencies>
+	
 	<build>
 		<finalName>NewProject2</finalName>
 	</build>
+	
 </project>
