@@ -19,7 +19,7 @@ public class WebInit extends AbstractAnnotationConfigDispatcherServletInitialize
 	@Override
 	protected String[] getServletMappings() {
 		
-		return new String[] {"/"};
+		return new String[] {"/NewProject2"};
 	}
 
 }

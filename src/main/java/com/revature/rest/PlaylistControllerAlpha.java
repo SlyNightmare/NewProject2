@@ -55,12 +55,21 @@ public class PlaylistControllerAlpha implements PlaylistController {
 	 * newPlaylist.getName())).build(); } else { return
 	 * ResponseEntity.unprocessableEntity().build(); } }
 	 */
-
+	
+	//Getting all Playlists 
 	@GetMapping(value = "/playlists", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Playlist>> getAllPlaylists(@RequestParam("accountId") int accountId) {
-		List<Playlist> playlists = playlistService.findAllPlaylists(account.getId());
+	public ResponseEntity<List<Playlist>> getAllPlaylists() {
+		List<Playlist> playlists = playlistService.findAllPlaylists();
 		return ResponseEntity.ok().body(playlists);
 	}
+
+	/*
+	 * @GetMapping(value = "/playlists", produces =
+	 * MediaType.APPLICATION_JSON_VALUE) public ResponseEntity<List<Playlist>>
+	 * getAllPlaylists(@RequestParam("accountId") int accountId) { List<Playlist>
+	 * playlists = playlistService.findAllPlaylists(account.getId()); return
+	 * ResponseEntity.ok().body(playlists); }
+	 */
 
 	@PostMapping(value = "/playlists/create")
 	public ResponseEntity<?> createPlaylist(@RequestBody Playlist playlist) {

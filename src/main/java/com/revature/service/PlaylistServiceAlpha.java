@@ -45,11 +45,16 @@ public class PlaylistServiceAlpha implements PlaylistService {
 	public Playlist findbyName(String name) {
 		return playlistRepository.findbyName(name);
 	}
-
-	@Override
-	public List<Playlist> findAllPlaylists(int accountId) {
-		return playlistRepository.findAllPlaylists(accountId);
-	}
 	
+	
+	@Override
+	public List<Playlist> findAllPlaylists() {
+		return playlistRepository.findAllPlaylists();
+	}
+
+	/*
+	 * @Override public List<Playlist> findAllPlaylists(int accountId) { return
+	 * playlistRepository.findAllPlaylists(accountId); }
+	 */
 	
 }

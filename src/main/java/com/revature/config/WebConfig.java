@@ -20,7 +20,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({ "GroupNewProject2" })
+@ComponentScan({ "NewProject2" })
 @Import({ SecurityConfig.class })
 public class WebConfig extends WebMvcConfigurerAdapter {
 
@@ -37,8 +37,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		dataSource.setUrl("jdbc:oracle:thin:@devops-example.c2ktqjqymhmt.us-east-1.rds.amazonaws.com:1521:ORCL");
-		dataSource.setUsername("jonathan");
-		dataSource.setPassword("password");
+		dataSource.setUsername("ALEX");
+		dataSource.setPassword("p4ssw0rd");
 		return datasource;
 	}
 
@@ -51,8 +51,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setPrefix("WEB-INF/jsp/");
-		viewResolver.setSuffix(".jsp");
+		viewResolver.setPrefix("webapp/static");
+		viewResolver.setSuffix(".html");
 		return viewResolver;
 	}
 

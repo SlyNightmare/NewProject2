@@ -3,6 +3,7 @@ package com.revature.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Account {
 	@Column(name="A_PASSWORD")
 	private String password;
 	
-	@OneToMany(mappedBy = "account")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	private Set<Playlist> playlists = new HashSet<>();
 
 	public Account () {}

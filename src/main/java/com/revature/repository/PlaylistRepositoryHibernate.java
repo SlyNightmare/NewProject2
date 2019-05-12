@@ -2,16 +2,15 @@ package com.revature.repository;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Playlist;
-import com.revature.model.Tracks;
 
 @Repository("playlistRepository")
 public class PlaylistRepositoryHibernate implements PlaylistRepository {
@@ -37,12 +36,19 @@ public class PlaylistRepositoryHibernate implements PlaylistRepository {
 		
 	}
 
-	@Override
-	public List<Playlist> findAllPlaylists(int accountId) {
-		List<Playlist> playlists = sessionFactory.getCurrentSession().createQuery("FROM PLAYLIST WHERE A_ID = ?").list();
+	public List<Playlist> findAllPlaylists() {
+		List<Playlist> playlists = sessionFactory.getCurrentSession().createQuery("from playlist").list();
 		return playlists;
 	}
-
+	/*
+	 * @Override public List<Playlist> findAllPlaylists(int accountId) { Playlist
+	 * playlist = new Playlist(); Query query = (Query)
+	 * sessionFactory.getCurrentSession().
+	 * createQuery("FROM PLAYLIST WHERE A_ID = :accountId");
+	 * query.setParameter("accountId", playlist.getAccount().getId());
+	 * List<Playlist> playlists = ((org.hibernate.Query) query).list() ; return
+	 * playlists; }
+	 */
 	@Override
 	public void updatePlaylist(int id, Playlist playlist) {
 		Session session = sessionFactory.getCurrentSession();

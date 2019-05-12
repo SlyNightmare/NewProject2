@@ -11,7 +11,8 @@ public interface PlaylistService {
 		//get by name
 		Playlist findbyName (String name);
 		//get all playlists by user name
-		List<Playlist> findAllPlaylists(int accountId);
+		//List<Playlist> findAllPlaylists(int accountId);
+		List<Playlist> findAllPlaylists();
 		//
 		//Playlist createPlaylist(String name);
 		//update the playlist
