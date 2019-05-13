@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +30,8 @@ public class Account {
 	@Column(name="A_PASSWORD")
 	private String password;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-	private Set<Playlist> playlists = new HashSet<>();
+	//@OneToMany(cascade = CascadeType.ALL,  fetch = FetchType.EAGER, mappedBy = "account")
+	//private Set<Playlist> playlists = new HashSet<>();
 
 	public Account () {}
 	
@@ -47,13 +48,6 @@ public class Account {
 		this.password = password;
 	}
 
-	public Account(int id, String username, String password, Set<Playlist> playlists) {
-		super();
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.playlists = playlists;
-	}
 
 	public int getId() {
 		return id;
@@ -79,17 +73,11 @@ public class Account {
 		this.password = password;
 	}
 
-	public Set<Playlist> getPlaylists() {
-		return playlists;
-	}
-
-	public void setPlaylists(Set<Playlist> playlists) {
-		this.playlists = playlists;
-	}
+	
 	
 	@Override
 	public String toString() {
-		return "Account [id=" + id + ", username=" + username + ", password=" + password + ", playlists=" + playlists
+		return "Account [id=" + id + ", username=" + username + ", password=" + password 
 				+ "]";
 	}
 

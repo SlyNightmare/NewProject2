@@ -1,28 +1,15 @@
 package com.revature.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
-import javax.persistence.SecondaryTables;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "MUSIC")
-@SecondaryTables({
-	@SecondaryTable(name="URLS", pkJoinColumns= {
-			@PrimaryKeyJoinColumn(name="spotify")}),//,
-	@SecondaryTable(name="SEEDS", pkJoinColumns= {
-			@PrimaryKeyJoinColumn(name="id")})
-})
 public class Music {
 
 	@Id
@@ -30,49 +17,34 @@ public class Music {
 	@SequenceGenerator(name = "musicSequence", sequenceName = "MUSIC_SEQ", allocationSize = 1)
 	@Column(name = "M_ID")
 	private int id;
+	
+	@Column(name="TRACK_NAME")
+	private String trackName;
+	
+	@Column(name="ARTIST")
+	private String artistName;
+	
+	@Column(name="ALBUM")
+	private String albumName;
+	
+	@Column(name="URL")
+	private String externalURL;
+	
+	@Column(name="PLAYLIST_ID")
+	private int playlistId;
 
-	@Column(name = "TRACK_ID")
-	private String track;
-
-	@Column(name = "ARTIST_ID")
-	private String artist;
-
-	@Column(name = "GENRE_ID")
-	private String genre;
-
-	@Column(name = "ALBUM_ID")
-	private String album;
-	
-	@Column(name = "SEED_ID")
-	private String seed;
-	
-	@Column(name = "ITEM_ID")
-	private String item;
-	
-	@Column(name = "URL_ID")
-	private String url;
-	
-	@ManyToMany(mappedBy="tracks")
-	private Set<Playlist> playlists = new HashSet<>();
-	
 	public Music() {
-	}
-
-	public Music(int id, String track, String artist, String genre, String album, String seed, String item, String url,
-			Set<Playlist> playlists) {
 		super();
-		this.id = id;
-		this.track = track;
-		this.artist = artist;
-		this.genre = genre;
-		this.album = album;
-		this.seed = seed;
-		this.item = item;
-		this.url = url;
-		this.playlists = playlists;
+		// TODO Auto-generated constructor stub
 	}
 
-
+	public Music(String trackName, String artistName, String albumName, String externalURL) {
+		super();
+		this.trackName = trackName;
+		this.artistName = artistName;
+		this.albumName = albumName;
+		this.externalURL = externalURL;
+	}
 
 	public int getId() {
 		return id;
@@ -82,44 +54,54 @@ public class Music {
 		this.id = id;
 	}
 
-	public String getTrack() {
-		return track;
+	public String getTrackName() {
+		return trackName;
 	}
 
-	public void setTrack(String track) {
-		this.track = track;
+	public void setTrackName(String trackName) {
+		this.trackName = trackName;
 	}
 
-	public String getArtist() {
-		return artist;
+	public String getArtistName() {
+		return artistName;
 	}
 
-	public void setArtist(String artist) {
-		this.artist = artist;
+	public void setArtistName(String artistName) {
+		this.artistName = artistName;
 	}
 
-	public String getGenre() {
-		return genre;
+	public String getAlbumName() {
+		return albumName;
 	}
 
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setAlbumName(String albumName) {
+		this.albumName = albumName;
 	}
 
-	public String getAlbum() {
-		return album;
+	public String getExternalURL() {
+		return externalURL;
 	}
 
-	public void setAlbum(String album) {
-		this.album = album;
+	public void setExternalURL(String externalURL) {
+		this.externalURL = externalURL;
+	}
+
+	public int getPlaylistId() {
+		return playlistId;
+	}
+
+	public void setPlaylistId(int playlistId) {
+		this.playlistId = playlistId;
 	}
 
 	@Override
 	public String toString() {
-		return "Music [id=" + id + ", track=" + track + ", artist=" + artist + ", genre=" + genre + ", album=" + album
-				+ ", seed=" + seed + ", item=" + item + ", url=" + url + ", playlists=" + playlists + "]";
+		return "Music [id=" + id + ", trackName=" + trackName + ", artistName=" + artistName + ", albumName="
+				+ albumName + ", externalURL=" + externalURL + ", playlistId=" + playlistId + "]";
 	}
 
+	
+	
 	
 
 }

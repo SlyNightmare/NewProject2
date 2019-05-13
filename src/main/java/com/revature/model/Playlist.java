@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,9 +28,8 @@ public class Playlist {
 	@Column(name="P_NAME")
 	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name="A_ID")
-	private Account account;
+	@Column(name="ACCOUNT_ID")
+	private int accountId;
 	
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="PLAYLIST_TRACKS", 
@@ -44,16 +42,14 @@ public class Playlist {
 	private Set<Music> tracks = new HashSet<>();
 	
 	public Playlist() {}
-	
-	
-	public Playlist(int id, String name, Account account, Set<Music> tracks) {
+
+	public Playlist(int id, String name, int accountId, Set<Music> tracks) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.account = account;
+		this.accountId = accountId;
 		this.tracks = tracks;
 	}
-
 
 	public int getId() {
 		return id;
@@ -71,22 +67,27 @@ public class Playlist {
 		this.name = name;
 	}
 
-
-	public Account getAccount() {
-		return account;
+	public long getAccountId() {
+		return accountId;
 	}
 
-
-	public void setAccount(Account account) {
-		this.account = account;
+	public void setAccountId(int accountId) {
+		this.accountId = accountId;
 	}
 
+	public Set<Music> getTracks() {
+		return tracks;
+	}
+
+	public void setTracks(Set<Music> tracks) {
+		this.tracks = tracks;
+	}
 
 	@Override
 	public String toString() {
-		return "Playlist [id=" + id + ", name=" + name + ", account=" + account + ", tracks=" + tracks + "]";
+		return "Playlist [id=" + id + ", name=" + name + ", accountId=" + accountId + ", tracks=" + tracks + "]";
 	}
-
+	
 	
 	
 }

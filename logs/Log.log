@@ -5794,3 +5794,11 @@ With the Partitioning, OLAP, Advanced Analytics and Real Application Testing opt
 2019-05-11 14:46:46 DEBUG StandardEnvironment:109 - Adding [systemEnvironment] PropertySource with lowest search precedence
 2019-05-11 14:46:46 DEBUG StandardEnvironment:124 - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
 2019-05-11 14:46:46 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]
+2019-05-12 18:36:02 DEBUG StandardEnvironment:109 - Adding [systemProperties] PropertySource with lowest search precedence
+2019-05-12 18:36:02 DEBUG StandardEnvironment:109 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2019-05-12 18:36:02 DEBUG StandardEnvironment:124 - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2019-05-12 18:36:02 INFO  ClassPathXmlApplicationContext:583 - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@368102c8: startup date [Sun May 12 18:36:02 EDT 2019]; root of context hierarchy
+2019-05-12 18:36:02 DEBUG StandardEnvironment:109 - Adding [systemProperties] PropertySource with lowest search precedence
+2019-05-12 18:36:02 DEBUG StandardEnvironment:109 - Adding [systemEnvironment] PropertySource with lowest search precedence
+2019-05-12 18:36:02 DEBUG StandardEnvironment:124 - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+2019-05-12 18:36:02 INFO  XmlBeanDefinitionReader:317 - Loading XML bean definitions from class path resource [applicationContext.xml]

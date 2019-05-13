@@ -12,7 +12,7 @@ public interface PlaylistRepository {
 	Playlist findbyName (String name);
 	//get all playlists by user name
 	//List<Playlist> findAllPlaylists(int accountId);
-	List<Playlist> findAllPlaylists();
+	List<Playlist> findAllPlaylistsByUserId(int accountId);
 	//
 	//Playlist createPlaylist(String name);
 	//update the playlist

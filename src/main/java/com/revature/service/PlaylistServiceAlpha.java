@@ -16,24 +16,24 @@ import com.revature.repository.PlaylistRepository;
 public class PlaylistServiceAlpha implements PlaylistService {
 
 	private static Logger logger = Logger.getLogger(PlaylistServiceAlpha.class);
-	
+
 	@Autowired
 	private PlaylistRepository playlistRepository;
-	
+
 	public PlaylistServiceAlpha() {
-		
+
 	}
 
 	@Override
 	public void updatePlaylist(int id, Playlist playlist) {
 		playlistRepository.updatePlaylist(id, playlist);
-		
+
 	}
 
 	@Override
 	public void deletePlaylist(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -45,16 +45,12 @@ public class PlaylistServiceAlpha implements PlaylistService {
 	public Playlist findbyName(String name) {
 		return playlistRepository.findbyName(name);
 	}
-	
-	
+
 	@Override
-	public List<Playlist> findAllPlaylists() {
-		return playlistRepository.findAllPlaylists();
+	public List<Playlist> findAllPlaylistsByUserId(int accountId) {
+		return playlistRepository.findAllPlaylistsByUserId(accountId);
 	}
 
-	/*
-	 * @Override public List<Playlist> findAllPlaylists(int accountId) { return
-	 * playlistRepository.findAllPlaylists(accountId); }
-	 */
-	
+	// save method:
+	// send to music repo
 }

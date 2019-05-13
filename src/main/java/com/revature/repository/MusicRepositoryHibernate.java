@@ -1,5 +1,7 @@
 package com.revature.repository;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -51,5 +53,14 @@ public class MusicRepositoryHibernate implements MusicRepository{
 			return null;
 		}
 	}
+
+	@Override
+	public List<Music> findAllTracksByPlaylistId(int playlistId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	//save method (Music music)
+		//sessionFactory.getCurrentSession().save(music);
 
 }

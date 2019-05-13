@@ -2,11 +2,10 @@ package com.revature.repository;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -33,22 +32,15 @@ public class PlaylistRepositoryHibernate implements PlaylistRepository {
 	@Override
 	public Playlist findbyName(String name) {
 		return (Playlist) sessionFactory.getCurrentSession().get(Playlist.class, name);
-		
+
 	}
 
-	public List<Playlist> findAllPlaylists() {
-		List<Playlist> playlists = sessionFactory.getCurrentSession().createQuery("from playlist").list();
-		return playlists;
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Playlist> findAllPlaylistsByUserId(int accountId) {
+		return sessionFactory.getCurrentSession().createCriteria(Playlist.class).add(Restrictions.like("accountId", accountId)).list();
 	}
-	/*
-	 * @Override public List<Playlist> findAllPlaylists(int accountId) { Playlist
-	 * playlist = new Playlist(); Query query = (Query)
-	 * sessionFactory.getCurrentSession().
-	 * createQuery("FROM PLAYLIST WHERE A_ID = :accountId");
-	 * query.setParameter("accountId", playlist.getAccount().getId());
-	 * List<Playlist> playlists = ((org.hibernate.Query) query).list() ; return
-	 * playlists; }
-	 */
+
 	@Override
 	public void updatePlaylist(int id, Playlist playlist) {
 		Session session = sessionFactory.getCurrentSession();

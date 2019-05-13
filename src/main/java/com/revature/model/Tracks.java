@@ -1,54 +1,110 @@
 package com.revature.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import java.util.Arrays;
 
-@Embeddable
+
 public class Tracks {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "trackSequence")
-	@SequenceGenerator(name = "trackSequence", sequenceName = "TRACK_SEQ", allocationSize = 1)
-	@Column(name = "TRACK_ID")
-	private int id;
+	private String href;
+	private Items[] items;
+	private long limit;
+	private String next;
+	private long offset;
+	private String previous;
+	private long total;
 	
-	@Embedded
-	private Items items;
 	
-	
-	public Tracks() {
-	}
+	public Tracks() {}
 
 
-
-	public Tracks(Items items) {
+	public Tracks(String href, Items[] items, long limit, String next, long offset, String previous, long total) {
 		super();
+		this.href = href;
 		this.items = items;
+		this.limit = limit;
+		this.next = next;
+		this.offset = offset;
+		this.previous = previous;
+		this.total = total;
 	}
 
 
+	public String getHref() {
+		return href;
+	}
 
-	public Items getItems() {
+
+	public void setHref(String href) {
+		this.href = href;
+	}
+
+
+	public Items[] getItems() {
 		return items;
 	}
 
 
-
-	public void setItems(Items items) {
+	public void setItems(Items[] items) {
 		this.items = items;
 	}
 
 
+	public long getLimit() {
+		return limit;
+	}
+
+
+	public void setLimit(long limit) {
+		this.limit = limit;
+	}
+
+
+	public String getNext() {
+		return next;
+	}
+
+
+	public void setNext(String next) {
+		this.next = next;
+	}
+
+
+	public long getOffset() {
+		return offset;
+	}
+
+
+	public void setOffset(long offset) {
+		this.offset = offset;
+	}
+
+
+	public String getPrevious() {
+		return previous;
+	}
+
+
+	public void setPrevious(String previous) {
+		this.previous = previous;
+	}
+
+
+	public long getTotal() {
+		return total;
+	}
+
+
+	public void setTotal(long total) {
+		this.total = total;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Tracks [items=" + items + "]";
+		return "Tracks [href=" + href + ", items=" + Arrays.toString(items) + ", limit=" + limit + ", next=" + next
+				+ ", offset=" + offset + ", previous=" + previous + ", total=" + total + "]";
 	}
+
 	
 	
 	
