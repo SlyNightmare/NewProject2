@@ -2,18 +2,23 @@ package com.revature.model;
 
 import java.util.Arrays;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Items {
 	
 	private Album album;
 	private Artists[] artists;
 	private long disc_number;
 	private long duration_ms;
+	@JsonProperty("explicit")
 	private boolean explicit;
 	private External_Ids external_ids;
 	private External_Urls external_urls;
 	private String href;
 	private String id;
+	@JsonProperty("is_local")
 	private boolean is_local;
+	@JsonProperty("is_playable")
 	private boolean is_playable;
 	private String name;
 	private long popularity;

@@ -14,6 +14,7 @@ import com.revature.service.MusicService;
 @CrossOrigin(origins="http://localhost:4200")
 public class MusicControllerAlpha implements MusicController {
 
+	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(MusicControllerAlpha.class);
 	
 	@Autowired

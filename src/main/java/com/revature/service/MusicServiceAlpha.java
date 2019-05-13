@@ -10,6 +10,7 @@ import com.revature.repository.MusicRepository;
 @Service("musicService")
 public class MusicServiceAlpha implements MusicService{
 
+	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(MusicServiceAlpha.class);
 	
 	@Autowired 

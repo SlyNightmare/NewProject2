@@ -15,6 +15,7 @@ import com.revature.repository.PlaylistRepository;
 @Transactional
 public class PlaylistServiceAlpha implements PlaylistService {
 
+	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(PlaylistServiceAlpha.class);
 
 	@Autowired
