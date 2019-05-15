@@ -59,6 +59,12 @@ public class MusicRepositoryHibernate implements MusicRepository{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void save(Music music) {
+		sessionFactory.getCurrentSession().save(music);
+		
+	}
 	
 	//save method (Music music)
 		//sessionFactory.getCurrentSession().save(music);

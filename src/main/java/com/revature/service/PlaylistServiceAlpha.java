@@ -8,7 +8,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.model.Music;
 import com.revature.model.Playlist;
+import com.revature.repository.MusicRepository;
 import com.revature.repository.PlaylistRepository;
 
 @Service("playlistService")
@@ -20,6 +22,9 @@ public class PlaylistServiceAlpha implements PlaylistService {
 
 	@Autowired
 	private PlaylistRepository playlistRepository;
+	
+	@Autowired
+	private MusicRepository musicRepository;
 
 	public PlaylistServiceAlpha() {
 
@@ -52,6 +57,6 @@ public class PlaylistServiceAlpha implements PlaylistService {
 		return playlistRepository.findAllPlaylistsByUserId(accountId);
 	}
 
-	// save method:
-	// send to music repo
+
+	
 }

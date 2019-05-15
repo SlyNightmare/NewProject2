@@ -35,5 +35,11 @@ public class MusicServiceAlpha implements MusicService{
 		return musicRepository.findByArtist(artist);
 	}
 
+	@Override
+	public boolean saveTrack(Music music) {
+		musicRepository.save(music);
+		return music.getId() != 0;
+	}
+
 
 }

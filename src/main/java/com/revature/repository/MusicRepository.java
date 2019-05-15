@@ -11,4 +11,6 @@ public interface MusicRepository {
 	Music findByAlbum(String album);
 	
 	List<Music> findAllTracksByPlaylistId(int playlistId);
+	
+	void save(Music music);
 }

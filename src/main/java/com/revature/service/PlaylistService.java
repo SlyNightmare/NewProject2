@@ -2,6 +2,7 @@ package com.revature.service;
 
 import java.util.List;
 
+import com.revature.model.Music;
 import com.revature.model.Playlist;
 
 public interface PlaylistService {
@@ -20,5 +21,5 @@ public interface PlaylistService {
 		//delete the playlist
 		void deletePlaylist(int id);
 		
-		// save(Music music) 
+	
 }

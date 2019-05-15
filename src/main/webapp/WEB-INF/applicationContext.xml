@@ -37,8 +37,8 @@
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
 			value="jdbc:oracle:thin:@project2-music.cu0cefz5b6ny.us-east-1.rds.amazonaws.com:1521:ORCL" />
-		<property name="username" value="ALEX"/>
-		<property name="password" value="p4ssw0rd"/>
+		<property name="username" value="project2_admin"/>
+		<property name="password" value="Junie5Cat"/>
 	</bean>
 
 	<bean name="sessionFactory"
@@ -49,7 +49,7 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 			</props>
 		</property>
 	</bean>

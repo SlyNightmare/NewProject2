@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
@@ -34,7 +35,7 @@ public class PlaylistControllerAlpha implements PlaylistController {
 
 	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(PlaylistControllerAlpha.class);
-	private static final String authorizationToken = "BQAYnuLy3c4iGzetq1gr0CS9O_NlYF_9MT5bGzuMbuTdnPV5ilN8r9NqK4VF9IXmukrL3CGDNWiXyfps-KPlakRXh8sFkVM_OoAoF-tqcB1Ry4w5GfY2NdgUm-WdfgzoZMibnN-4wPyd4kQBx2a-utk";
+	private static final String authorizationToken = "BQBdwn86R2-pPK5WTo78uf7olaPWYHSJVItKi0ND0jtInfJh-__dUZLLguRHO_REkqbV49g9qCWA6S5XIqLVBl1scZ54wlzk8P5NwFPLhFc-PNJxIgxWjACTAVUA2WKqPLuJ9XEQ8ifO1M6J1744Wio";
 	@Autowired
 	private RestTemplate restTemplate;
 	private static final HttpHeaders headers = new HttpHeaders();
@@ -47,8 +48,6 @@ public class PlaylistControllerAlpha implements PlaylistController {
 	@GetMapping(value = "/playlists", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Playlist>> getAllPlaylistsByUserId(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		//playlistService.sa
-		
 		List<Playlist> playlists = playlistService.findAllPlaylistsByUserId((Integer) session.getAttribute("accountId"));
 		return ResponseEntity.ok(playlists);
 	}
@@ -70,21 +69,10 @@ public class PlaylistControllerAlpha implements PlaylistController {
 
 	// https://api.spotify.com/v1/search?q=roadhouse%20blues&type=track
 
-
-	@Override 
-	@GetMapping("/getsong/{trackname}")
-	public ResponseEntity<Music> getSong(@PathVariable("trackname") String trackName) {
-		
-		headers.set("Authorization", "Bearer " + authorizationToken); 
-		HttpEntity<?> entity = new HttpEntity<Object>(headers); 
-		ResponseEntity<APIObject> response = restTemplate.exchange("https://api.spotify.com/v1/search?q=" + trackName +"&type=track&market=US&limit=1", HttpMethod.GET, entity, APIObject.class); 
-		Music music = new Music(response.getBody().getTracks().getItems()[0].getName(), response.getBody().getTracks().getItems()[0].getArtists()[0].getName(), response.getBody().getTracks().getItems()[0].getAlbum().getName(), response.getBody().getTracks().getItems()[0].getExternal_urls().getSpotify());
-		return new ResponseEntity<>(music,HttpStatus.OK); 
-	}
+	//public @ResponseBody ResponseEntity<Music> getSong(@PathVariable("trackname") String trackName)
 	
-	//PostMapping
-	// public ResponseEntity<> addToDatabase(@RequestBody Music music){
-	// 	playlistService.save(music)
+	
+	
 	
 
 }
