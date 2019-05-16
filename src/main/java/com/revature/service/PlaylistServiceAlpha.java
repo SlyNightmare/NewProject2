@@ -52,6 +52,7 @@ public class PlaylistServiceAlpha implements PlaylistService {
 
 	@Override
 	public List<Playlist> findAllPlaylistsByUserId(int accountId) {
+		logger.info("SERVICE current session id: " + accountId);
 		return playlistRepository.findAllPlaylistsByUserId(accountId);
 	}
 

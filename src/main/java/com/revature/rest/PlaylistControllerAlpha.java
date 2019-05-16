@@ -45,16 +45,12 @@ public class PlaylistControllerAlpha implements PlaylistController {
 	private PlaylistService playlistService;
 
 	//Getting all Playlists 
-	@GetMapping(value = "/playlists?accountId")
-	public List<Playlist> getAllPlaylistsByUserId(@RequestParam("accountId") int accountId, HttpServletRequest request) {
+	@GetMapping(value = "/playlists/{accountId}")
+	public List<Playlist> getAllPlaylistsByUserId(@PathVariable("accountId") int accountId, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		System.out.println(request.getSession().getAttribute("accountId"));
-		//logger.trace("in Session: " + session.getAttribute("accountId"));
-		System.out.println("STARTING TO FIND ACCOUNTID");
-		System.out.println(session.getAttribute("accountId"));
+		logger.trace("CONTROLLER session account Id: " + accountId);
 		List<Playlist> playlists = playlistService.findAllPlaylistsByUserId((Integer) session.getAttribute("accountId"));
 		return playlists;
-		//return null;
 	}
 	
 	
@@ -67,7 +63,7 @@ public class PlaylistControllerAlpha implements PlaylistController {
 
 
 	@GetMapping("/getsong/{trackname}")
-	public @ResponseBody ResponseEntity<Music> getSong(@PathVariable("trackname") String trackName) {
+	public ResponseEntity<Music> getSong(@PathVariable("trackname") String trackName) {
 		
 		headers.set("Authorization", "Bearer " + authorizationToken); 
 		HttpEntity<?> entity = new HttpEntity<Object>(headers); 

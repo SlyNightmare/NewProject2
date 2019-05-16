@@ -39,6 +39,7 @@ public class PlaylistRepositoryHibernate implements PlaylistRepository {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Playlist> findAllPlaylistsByUserId(int accountId) {
+		logger.info("REPO current Session account Id: " + accountId);
 		return sessionFactory.getCurrentSession().createCriteria(Playlist.class).add(Restrictions.like("accountId", accountId)).list();
 	}
 
