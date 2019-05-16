@@ -29,7 +29,8 @@ public class LoginController {
 		Account valid = loginService.login(loginDetails[0], loginDetails[1]);
 		if(valid != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("AccountId", valid.getId());
+			session.setAttribute("accountId", valid.getId());
+			System.out.println((Integer) session.getAttribute("accountId"));
 			return new ResponseEntity<>(valid, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

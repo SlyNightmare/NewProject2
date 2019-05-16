@@ -3,11 +3,13 @@ package com.revature.service;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.model.Music;
 import com.revature.repository.MusicRepository;
 
 @Service("musicService")
+@Transactional
 public class MusicServiceAlpha implements MusicService{
 
 	@SuppressWarnings("unused")

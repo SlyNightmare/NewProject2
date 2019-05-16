@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -35,7 +36,7 @@ public class PlaylistControllerAlpha implements PlaylistController {
 
 	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(PlaylistControllerAlpha.class);
-	private static final String authorizationToken = "BQBdwn86R2-pPK5WTo78uf7olaPWYHSJVItKi0ND0jtInfJh-__dUZLLguRHO_REkqbV49g9qCWA6S5XIqLVBl1scZ54wlzk8P5NwFPLhFc-PNJxIgxWjACTAVUA2WKqPLuJ9XEQ8ifO1M6J1744Wio";
+	private static final String authorizationToken = "BQBTHPGGyUPQCLVyGRDDcm-tZAi3J0SqOaSZxYOPmkcGb9suFrEGJBKp5Isg3J7XQP3doy9u42bbjEF0JUk-f8FQwPGXl7-j7AGp7gf6C0CdzbRygcGapyLNu2es1rXL8u48YPtk0s8py9YgrZKmxCg";
 	@Autowired
 	private RestTemplate restTemplate;
 	private static final HttpHeaders headers = new HttpHeaders();
@@ -43,16 +44,20 @@ public class PlaylistControllerAlpha implements PlaylistController {
 	@Autowired
 	private PlaylistService playlistService;
 
-	
 	//Getting all Playlists 
-	@GetMapping(value = "/playlists", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Playlist>> getAllPlaylistsByUserId(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
+	@GetMapping(value = "/playlists?accountId")
+	public List<Playlist> getAllPlaylistsByUserId(@RequestParam("accountId") int accountId, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(request.getSession().getAttribute("accountId"));
+		//logger.trace("in Session: " + session.getAttribute("accountId"));
+		System.out.println("STARTING TO FIND ACCOUNTID");
+		System.out.println(session.getAttribute("accountId"));
 		List<Playlist> playlists = playlistService.findAllPlaylistsByUserId((Integer) session.getAttribute("accountId"));
-		return ResponseEntity.ok(playlists);
+		return playlists;
+		//return null;
 	}
 	
-
+	
 
 	@PostMapping(value = "/playlists/create")
 	public ResponseEntity<?> createPlaylist(@RequestBody Playlist playlist) {
@@ -61,11 +66,23 @@ public class PlaylistControllerAlpha implements PlaylistController {
 	}
 
 
-	@GetMapping(value = "/playlists/{name}")
-	public ResponseEntity<Playlist> getPlaylistByName(@PathVariable("name") String name) {
-		Playlist playlist = playlistService.findbyName(name);
-		return ResponseEntity.ok().body(playlist);
+	@GetMapping("/getsong/{trackname}")
+	public @ResponseBody ResponseEntity<Music> getSong(@PathVariable("trackname") String trackName) {
+		
+		headers.set("Authorization", "Bearer " + authorizationToken); 
+		HttpEntity<?> entity = new HttpEntity<Object>(headers); 
+		ResponseEntity<APIObject> response = restTemplate.exchange("https://api.spotify.com/v1/search?q=" + trackName +"&type=track&market=US&limit=1", HttpMethod.GET, entity, APIObject.class); 
+		Music music = new Music(response.getBody().getTracks().getItems()[0].getName(), response.getBody().getTracks().getItems()[0].getArtists()[0].getName(), response.getBody().getTracks().getItems()[0].getAlbum().getName(), response.getBody().getTracks().getItems()[0].getExternal_urls().getSpotify());
+		return new ResponseEntity<>(music,HttpStatus.OK); 
 	}
+
+	
+	
+	//@GetMapping(value = "/playlists/{name}")
+	//public ResponseEntity<Playlist> getPlaylistByName(@PathVariable("name") String name) {
+	//	Playlist playlist = playlistService.findbyName(name);
+	//	return ResponseEntity.ok().body(playlist);
+	//}
 
 	// https://api.spotify.com/v1/search?q=roadhouse%20blues&type=track
 

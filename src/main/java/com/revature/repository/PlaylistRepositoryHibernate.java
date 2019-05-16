@@ -35,6 +35,7 @@ public class PlaylistRepositoryHibernate implements PlaylistRepository {
 
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Playlist> findAllPlaylistsByUserId(int accountId) {

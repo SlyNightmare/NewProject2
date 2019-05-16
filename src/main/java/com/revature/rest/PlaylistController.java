@@ -12,8 +12,8 @@ import com.revature.model.Playlist;
 public interface PlaylistController {
 
 	//ResponseEntity<List<Playlist>> getAllPlaylists(int accountId);
-	ResponseEntity<List<Playlist>> getAllPlaylistsByUserId(HttpServletRequest request);
+	List<Playlist> getAllPlaylistsByUserId(int accountId, HttpServletRequest request);
 	ResponseEntity<?> createPlaylist(Playlist playlist);
-	//ResponseEntity<Music> getSong(String trackName);
-	ResponseEntity<Playlist> getPlaylistByName(String name);
+	ResponseEntity<Music> getSong(String trackName);
+	//ResponseEntity<Playlist> getPlaylistByName(String name);
 }
